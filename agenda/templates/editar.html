@@ -1,0 +1,124 @@
+$def with (respuesta={})
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar la Agenda Web de Chupapi</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #aaa6a6;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #000000;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(216, 2, 134, 0.7);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* ESTILOS DE TEXTO */
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        /* ESTILOS DEL FORMULARIO */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #333333;
+            color: #ffffff;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+
+        /* ESTILOS DE BOTONES */
+        input[type="submit"] {
+            background-color: rgb(216, 2, 134);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(180, 0, 110);
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: rgb(216, 2, 134);
+            padding: 10px;
+            border: 1px solid rgb(216, 2, 134);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            background-color: rgba(216, 2, 134, 0.1);
+            color: #ffffff;
+        }       
+    </style>
+</head>
+<body>
+    <div class="container">
+    $if respuesta["error"] is not None:
+        <h2>$respuesta["error"]</h2>
+
+    <form method="POST">
+        $ nombre = respuesta['persona'][1] if len(respuesta['persona']) > 1 else ''
+        $ email = respuesta['persona'][2] if len(respuesta['persona']) > 2 else ''
+        <h1>Editar a $nombre</h1>   
+
+        <label>Nombre</label><br>
+        <input type="text" name="nombre" value=$nombre required><br><br>
+        <label>Email</label><br>
+        <input type="email" name="email" value=$email required><br>
+        <br><br>
+        <input type="submit" value="Actualizar">
+        <a href="/">Cancelar</a>
+    </form>
+    </div>
+</body>
+</html>
+                                                                                                                            
