@@ -1,0 +1,14 @@
+$def with(respuesta={})
+<html>
+<head><title>Agenda Web</title></head>
+<body>
+<h1>Lista de personas</h1>
+$if respuesta.get("personas"):
+    <ul>
+    $for persona in respuesta["personas"]:
+        <li>$persona.get("nombre", persona[1]) - $persona.get("email", persona[2])</li>
+    </ul>
+$else:
+    <p>No hay registros</p>
+</body>
+</html>

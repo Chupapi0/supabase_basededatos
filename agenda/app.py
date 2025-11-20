@@ -13,6 +13,9 @@ render = web.template.render("templates/")
 web.template.Template.globals['str'] = str
 app = web.application(urls, globals())
 
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 class Index:
     def GET(self):
         connection = None
